@@ -1,6 +1,7 @@
+import yt_dlp
 from yt_dlp import YoutubeDL
 
-def youConfig():
+def you_config():
     ydl_opts = {
         "quiet": True,
         "skip_download": True,
@@ -12,12 +13,34 @@ def youConfig():
         print(info["url"])
 
 
-def youProcess(downType):
-    if downType=="VIDEO":
-        def downvideo():
+def you_process(downType):
+    if downType=='VIDEO':
+        def down_video():
+            
 
-    if downType=="AUDIO":
-        def downaudio():
+
+    if downType=='AUDIO':
+        def down_audio():
+            url_in=[input("Cole o URL: ")]
+            yt_opts={
+                'format':'m4a/bestaudio/best',
+                'postprocessors': [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': 'wav',
+                }]
+            }
+
+            with yt_dlp.YoutubeDL(yt_opts) as ydl:
+                error_code = ydl.download(url_in)
+
+
+
+
+
+
+
+
+
 
 
 
