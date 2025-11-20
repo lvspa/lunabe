@@ -10,9 +10,9 @@ def you_process(downType):
         def down_video():
             yt_opts = {
                 'format': 'best',
-                'path':{'/home/Alexandre/Vídeos/'},
             }
             with yt_dlp.YoutubeDL(yt_opts) as ydl:
+                os.chdir('/home/Alexandre/Vídeos/')
                 final_product=ydl.download(url_in)
             return final_product
 
@@ -28,9 +28,9 @@ def you_process(downType):
                     'key': 'FFmpegExtractAudio',
                     'preferredcodec': 'wav',
                 }],
-                'path': {'/home/Alexandre/Músicas/'}
             }
             with yt_dlp.YoutubeDL(yt_opts) as ydl:
+                 os.chdir('/home/Alexandre/Músicas/')
                  midia = ydl.download(url_in)
             return midia;
     else:
