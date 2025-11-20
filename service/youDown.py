@@ -6,8 +6,15 @@ def you_process(downType):
         def down_video(url_in,info,*,incomplete):
             duration=info.get('duration')
             if duration and duration<5:
-                print()
+                return 'Video muito curto :('
+            yt_opts={
+                'match_filter':down_video(),
+            }
+            with yt_dlp.YoutubeDL(yt_opts) as ydl:
+                final_product=ydl.download(url_in)
+            return final_product
 
+    
     elif downType=='AUDIO':
         def down_audio():
             url_in = [input('Cole o URL do seu AUDIO aqui: ')]
@@ -25,6 +32,7 @@ def you_process(downType):
         print('Tipo de arquivo desconhecido')
 
     return down_audio()
+    return down_video()
 
 
 products=you_process(input('Qual o tipo de arquivo? ').upper())
