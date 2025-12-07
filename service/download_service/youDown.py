@@ -1,13 +1,12 @@
 import yt_dlp
+from imageio.plugins.ffmpeg import download
 from yt_dlp import YoutubeDL
 import os
 import area_76
 from service.download_service.area_76 import clearUrl
 
 
-############################################
-# possibilidade: oferecer dowload em listas #
-#############################################
+# implementar contador de minutagem em função a parte
 
 def you_process(downType):
 
@@ -46,7 +45,19 @@ def you_process(downType):
                 }],
             }
             with yt_dlp.YoutubeDL(yt_opts) as ydl:
+
                  os.chdir('/home/Alexandre/Músicas/')
+
+                 str_link=clean_link[0]
+
+                 info=ydl.extract_info(str_link, download=False)
+
+                 duration=(info.get('duration'))
+                 mins=duration//60
+                 secs_rest=duration%60
+
+                 print(f'Sua midia tem {mins} minutos e {secs_rest} segundos.')
+
                  midia = ydl.download(clean_link)
             return midia;
     else:
@@ -57,8 +68,8 @@ def you_process(downType):
 
 
 
-products=you_process(input('Qual o tipo de arquivo? ').upper())
-print(products)
+products=you_process(input('Qual o tipo de arquivo?[AUDIO OU VIDEO]: ').upper())
+
 
 
 
